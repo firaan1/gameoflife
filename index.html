@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js">
+</script>
+<script src="https://d3js.org/d3.v6.js"></script>
+
+<label for="gol_row">Rows</label>
+<input type="number" id="gol_row" name="gol_row" value="25">
+
+<label for="gol_iter">Iterations</label>
+<input type="number" id="gol_iter" name="gol_iter" value="50">
+
+<label for="gol_seed">Seed</label>
+<input type="number" id="gol_seed" name="gol_seed" value="">
+
+<button type="button" onClick="start_gol()">Submit</button>
+
+<!-- Create a div where the graph will take place -->
+<div id="plotdiv"></div>
+
+<div style="text-align: center;">
+    <h3 id="gol_seed_current"></h3>
+</div>
+
+<script src="gol.js"></script>
+
