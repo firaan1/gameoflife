@@ -1,38 +1,72 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-<!-- Load d3.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js">
-</script>
-<script src="https://d3js.org/d3.v6.js"></script>
+    <!-- Load d3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js">
+    </script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>  
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <h1>Conway's Game of Life</h1>
 
-<h2>Conway's Game of Life</h2>
-<div>
-    <ul>
-        <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
-        <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
-        <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
-        <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
-    </ul>
-</div>
+    <div id="plotdiv"></div>
 
-<label for="gol_row">Rows</label>
-<input type="number" id="gol_row" name="gol_row" value="25">
+    <button type="button" id="clearbtn" class="custombtn clickstop clickclear clicknext">Clear</button>
+    <button type="button" id="startbtn" class="custombtn clickstop clickclear clicknext">Start</button>
+    <button type="button" id="nextbtn" class="custombtn clickstop clickclear clicknext">Next</button>
+    <button type="button" id="stopbtn" class="custombtn clickstart">Stop</button>
+    <label for="accept">
+        <input type="checkbox" id="showchange" name="showchange" value="yes" checked>  Show Change 
+     </label>
+    <p>left click to add and right click to remove cells</p>
 
-<label for="gol_iter">Iterations</label>
-<input type="number" id="gol_iter" name="gol_iter" value="50">
+    <script type="text/javascript">
+        $(document).ready(function(){
 
-<label for="gol_seed">Seed</label>
-<input type="number" id="gol_seed" name="gol_seed" value="">
+            $(".custombtn").on("click", function(){
+                $(".custombtn").prop("disabled", true);
+                if(this.id === "startbtn") {
+                    $(".clickstart").prop("disabled", false);
+                    iter_gol(single = false);
+                } else if(this.id === "stopbtn") {
+                    $(".clickstop").prop("disabled", false);
+                    clearInterval(interval);
+                } else if(this.id === "clearbtn") {
+                    $(".clickclear").prop("disabled", false);
+                    values1 = Array(gol_row * gol_row).fill(0);
+                    iter_gol(single = true);
+                } else if(this.id === "nextbtn") {
+                    $(".clicknext").prop("disabled", false);
+                    iter_gol(single = true);
+                }
+            });
 
-<button type="button" onClick="start_gol()">Submit</button>
+        });
+    </script>
 
-<!-- Create a div where the graph will take place -->
-<div id="plotdiv"></div>
+    <script src="gol.js"></script>
 
-<div style="text-align: center;">
-    <h3 id="gol_seed_current"></h3>
-</div>
 
-<script src="gol.js"></script>
+    <div>
+        <h3>Rules</h3>
+        <ol>
+            <li>Any live cell with fewer than two live neighbours dies (referred to as underpopulation or exposure).</li>
+            <li>Any live cell with more than three live neighbours dies (referred to as overpopulation or overcrowding).</li>
+            <li>Any live cell with two or three live neighbours lives, unchanged, to the next generation.</li>
+            <li>Any dead cell with exactly three live neighbours will come to life.</li>
+        </ol>
+    </div>
 
+</body>
+
+
+</html>
