@@ -6,6 +6,16 @@
 </script>
 <script src="https://d3js.org/d3.v6.js"></script>
 
+<h2>Conway's Game of Life</h2>
+<div>
+    <ul>
+        <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
+        <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+        <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+        <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+    </ul>
+</div>
+
 <label for="gol_row">Rows</label>
 <input type="number" id="gol_row" name="gol_row" value="25">
 
