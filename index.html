@@ -42,7 +42,7 @@
                     clearInterval(interval);
                 } else if(this.id === "clearbtn") {
                     $(".clickclear").prop("disabled", false);
-                    values1 = Array(gol_row * gol_row).fill(0);
+                    values1 = Array(gol_row * gol_col).fill(0);
                     iter_gol(single = true);
                 } else if(this.id === "nextbtn") {
                     $(".clicknext").prop("disabled", false);
